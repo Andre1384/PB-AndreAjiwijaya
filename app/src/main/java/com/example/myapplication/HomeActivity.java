@@ -23,27 +23,21 @@ public class HomeActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_home);
 
-        // Setup Toolbar
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setTitle("Home");
         }
 
-        // Menyesuaikan padding untuk sistem bar
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.home), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
 
-
-
-        // **Menghubungkan tombol dengan XML**
         btnProfile = findViewById(R.id.btn_profile);
         btnSetting = findViewById(R.id.btn_setting);
 
-        // **Membuka ProfileActivity ketika tombol Profile ditekan**
         btnProfile.setOnClickListener(view -> {
             Intent a = new Intent(getApplicationContext(), ProfileActivity.class);
             startActivity(a);

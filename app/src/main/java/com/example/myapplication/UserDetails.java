@@ -7,11 +7,9 @@ public class UserDetails {
     private String userEmail;
     private String userNIM;
 
-    // Konstruktor default (diperlukan oleh Firebase)
     public UserDetails() {
     }
 
-    // Konstruktor dengan parameter (tanpa password)
     public UserDetails(String userId, String username, String userEmail, String userNIM) {
         this.userId = userId;
         this.username = username;
@@ -19,7 +17,6 @@ public class UserDetails {
         this.userNIM = userNIM;
     }
 
-    // Getter dan Setter
     public String getUserId() {
         return userId;
     }

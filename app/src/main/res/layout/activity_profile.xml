@@ -2,10 +2,12 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:padding="24dp"
     android:orientation="vertical"
     android:gravity="center"
-    android:background="@android:color/white">
+    android:background="@android:color/white"
+    tools:context=".ProfileActivity">
 
     <!-- Gambar Profile -->
     <ImageView

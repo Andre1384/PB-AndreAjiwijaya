@@ -29,19 +29,16 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-        // Inisialisasi Firebase
         auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
         reference = FirebaseDatabase.getInstance().getReference("Users");
 
-        // Inisialisasi View
         textName = findViewById(R.id.textName);
         textEmail = findViewById(R.id.textEmail);
         textNIM = findViewById(R.id.textNIM);
         profileImage= findViewById(R.id.prfImage);
         btnLogout = findViewById(R.id.btnLogout);
 
-        // Ambil data user dari Firebase
         if (user != null) {
             getUserData(user.getUid());
         } else {
@@ -49,7 +46,6 @@ public class ProfileActivity extends AppCompatActivity {
             finish();
         }
 
-        // Logout button
         btnLogout.setOnClickListener(view -> {
             auth.signOut();
             Toast.makeText(ProfileActivity.this, "Logout berhasil", Toast.LENGTH_SHORT).show();
