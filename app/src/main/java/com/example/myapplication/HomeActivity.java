@@ -14,6 +14,8 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class HomeActivity extends AppCompatActivity {
 
+    Button btnProfile, btnSetting;
+
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,20 +37,23 @@ public class HomeActivity extends AppCompatActivity {
             return insets;
         });
 
+
+
         // **Menghubungkan tombol dengan XML**
-        Button btnProfile = findViewById(R.id.btn_profile);
-        Button btnSetting = findViewById(R.id.btn_setting);
+        btnProfile = findViewById(R.id.btn_profile);
+        btnSetting = findViewById(R.id.btn_setting);
 
         // **Membuka ProfileActivity ketika tombol Profile ditekan**
-        btnProfile.setOnClickListener(v -> {
-            Intent intent = new Intent(HomeActivity.this, ProfileActivity.class);
-            startActivity(intent);
+        btnProfile.setOnClickListener(view -> {
+            Intent a = new Intent(getApplicationContext(), ProfileActivity.class);
+            startActivity(a);
+            finish();
         });
 
-        // **Membuka SettingActivity ketika tombol Setting ditekan**
-        btnSetting.setOnClickListener(v -> {
-            Intent intent = new Intent(HomeActivity.this, SettingActivity.class);
-            startActivity(intent);
+        btnSetting.setOnClickListener(view -> {
+            Intent a = new Intent(getApplicationContext(), SettingActivity.class);
+            startActivity(a);
+            finish();
         });
     }
 }

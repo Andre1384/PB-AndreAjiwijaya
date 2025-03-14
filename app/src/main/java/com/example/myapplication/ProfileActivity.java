@@ -38,7 +38,7 @@ public class ProfileActivity extends AppCompatActivity {
         textName = findViewById(R.id.textName);
         textEmail = findViewById(R.id.textEmail);
         textNIM = findViewById(R.id.textNIM);
-        profileImage = findViewById(R.id.profileImage);
+        profileImage= findViewById(R.id.prfImage);
         btnLogout = findViewById(R.id.btnLogout);
 
         // Ambil data user dari Firebase

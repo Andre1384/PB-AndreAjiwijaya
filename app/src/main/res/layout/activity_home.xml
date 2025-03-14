@@ -96,7 +96,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:layout_marginStart="16dp"
-                android:text="another"
+                android:text="Drifting aimlessly, yet always finding their way—just like dreams in the sky"
                 android:textColor="#777777"
                 android:textSize="20sp"/>
 
@@ -111,7 +111,7 @@
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Selengkapnya"
+                    android:text="Read more"
                     android:textAllCaps="false"/>
 
                 <LinearLayout
@@ -175,7 +175,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:layout_marginStart="16dp"
-                android:text="another"
+                android:text="In the vast silence of the night, the stars whisper stories of eternity."
                 android:textColor="#777777"
                 android:textSize="20sp"/>
 
@@ -190,7 +190,7 @@
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Selengkapnya"
+                    android:text="Read more"
                     android:textAllCaps="false"/>
 
                 <LinearLayout
@@ -259,7 +259,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:layout_marginStart="16dp"
-                android:text="another"
+                android:text="Softly glowing in the darkness, the moon reminds us that even in the night, light remains."
                 android:textColor="#777777"
                 android:textSize="20sp"/>
 
@@ -274,7 +274,7 @@
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Selengkapnya"
+                    android:text="Read more"
                     android:textAllCaps="false"/>
 
                 <LinearLayout
@@ -343,7 +343,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:layout_marginStart="16dp"
-                android:text="another"
+                android:text="Endless and untamed, the sea carries secrets only the waves understand."
                 android:textColor="#777777"
                 android:textSize="20sp"/>
 
@@ -358,7 +358,7 @@
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Selengkapnya"
+                    android:text="Read more"
                     android:textAllCaps="false"/>
 
                 <LinearLayout
@@ -427,7 +427,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:layout_marginStart="16dp"
-                android:text="another"
+                android:text="Dancing lights in the sky, a fleeting masterpiece painted by the universe."
                 android:textColor="#777777"
                 android:textSize="20sp"/>
 
@@ -442,7 +442,7 @@
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Selengkapnya"
+                    android:text="Read more"
                     android:textAllCaps="false"/>
 
                 <LinearLayout
