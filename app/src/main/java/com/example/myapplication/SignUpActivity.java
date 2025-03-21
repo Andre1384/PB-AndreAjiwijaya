@@ -123,24 +123,19 @@ public class SignUpActivity extends AppCompatActivity {
 
         reference.child(uid).setValue(userData).addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
-                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                if (user != null) {
-                    user.sendEmailVerification().addOnCompleteListener(task1 -> {
-                        if (task1.isSuccessful()) {
-                            Toast.makeText(SignUpActivity.this, "Verifikasi email dikirim! Cek inbox/spam.", Toast.LENGTH_LONG).show();
-                            Log.d(TAG, "Email verification sent successfully");
-                        } else {
-                            Log.e(TAG, "Gagal mengirim email verifikasi", task1.getException());
-                            Toast.makeText(SignUpActivity.this, "Gagal mengirim verifikasi email!", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                } else {
-                    Log.e(TAG, "FirebaseUser null, tidak bisa kirim email verifikasi");
-                    Toast.makeText(SignUpActivity.this, "Terjadi kesalahan, silakan coba lagi.", Toast.LENGTH_SHORT).show();
-                }
+                // Kirim email verifikasi
+                fUser.sendEmailVerification().addOnCompleteListener(task1 -> {
+                    if (task1.isSuccessful()) {
+                        Toast.makeText(SignUpActivity.this, "Verifikasi email dikirim! Cek inbox/spam.", Toast.LENGTH_LONG).show();
+                        Log.d(TAG, "Email verification sent successfully");
+                    } else {
+                        Log.e(TAG, "Gagal mengirim email verifikasi", task1.getException());
+                        Toast.makeText(SignUpActivity.this, "Gagal mengirim verifikasi email: " + task1.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
 
                 progressDialog.dismiss();
-                Toast.makeText(SignUpActivity.this, "Akun berhasil dibuat!", Toast.LENGTH_LONG).show();
+                Toast.makeText(SignUpActivity.this, "Akun berhasil dibuat! Silakan verifikasi email sebelum login.", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
@@ -151,5 +146,19 @@ public class SignUpActivity extends AppCompatActivity {
                 Log.e(TAG, "Failed to save user data", task.getException());
             }
         });
+    }
+
+    // Cek apakah user sudah verifikasi sebelum lanjut ke home
+    @Override
+    protected void onStart() {
+        super.onStart();
+        FirebaseUser currentUser = auth.getCurrentUser();
+        if (currentUser != null && currentUser.isEmailVerified()) {
+            Intent intent = new Intent(SignUpActivity.this, HomeActivity.class);
+            startActivity(intent);
+            finish();
+        } else if (currentUser != null && !currentUser.isEmailVerified()) {
+            Toast.makeText(SignUpActivity.this, "Silakan verifikasi email terlebih dahulu!", Toast.LENGTH_SHORT).show();
+        }
     }
 }
