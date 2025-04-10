@@ -11,9 +11,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.DataSnapshot;
 
 public class ProfileActivity extends AppCompatActivity {
 
@@ -36,7 +36,7 @@ public class ProfileActivity extends AppCompatActivity {
         textName = findViewById(R.id.textName);
         textEmail = findViewById(R.id.textEmail);
         textNIM = findViewById(R.id.textNIM);
-        profileImage= findViewById(R.id.prfImage);
+        profileImage = findViewById(R.id.prfImage);
         btnLogout = findViewById(R.id.btnLogout);
 
         if (user != null) {
@@ -59,18 +59,20 @@ public class ProfileActivity extends AppCompatActivity {
             if (task.isSuccessful()) {
                 DataSnapshot snapshot = task.getResult();
                 if (snapshot.exists()) {
-                    String username = snapshot.child("username").getValue(String.class);
-                    String email = snapshot.child("userEmail").getValue(String.class);
-                    String nim = snapshot.child("userNIM").getValue(String.class);
-
-                    textName.setText(username);
-                    textEmail.setText(email);
-                    textNIM.setText("NIM: " + nim);
+                    // Ambil object User langsung
+                    SignUpActivity.User userData = snapshot.getValue(SignUpActivity.User.class);
+                    if (userData != null) {
+                        textName.setText(userData.name);
+                        textEmail.setText(userData.email);
+                        textNIM.setText("NIM: " + userData.nim);
+                    } else {
+                        Toast.makeText(this, "Data user tidak lengkap", Toast.LENGTH_SHORT).show();
+                    }
                 } else {
-                    Toast.makeText(ProfileActivity.this, "Data user tidak ditemukan", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Data user tidak ditemukan", Toast.LENGTH_SHORT).show();
                 }
             } else {
-                Toast.makeText(ProfileActivity.this, "Gagal mengambil data user", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Gagal mengambil data user", Toast.LENGTH_SHORT).show();
             }
         });
     }

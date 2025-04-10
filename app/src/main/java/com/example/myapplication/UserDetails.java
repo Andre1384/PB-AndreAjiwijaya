@@ -2,50 +2,41 @@ package com.example.myapplication;
 
 public class UserDetails {
 
-    private String userId;
-    private String username;
-    private String userEmail;
-    private String userNIM;
+    private String name;
+    private String email;
+    private String nim;
 
     public UserDetails() {
+        // Diperlukan untuk Firebase
     }
 
-    public UserDetails(String userId, String username, String userEmail, String userNIM) {
-        this.userId = userId;
-        this.username = username;
-        this.userEmail = userEmail;
-        this.userNIM = userNIM;
+    public UserDetails(String name, String email, String nim) {
+        this.name = name;
+        this.email = email;
+        this.nim = nim;
     }
 
-    public String getUserId() {
-        return userId;
+    public String getName() {
+        return name;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getUsername() {
-        return username;
+    public String getEmail() {
+        return email;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public String getUserEmail() {
-        return userEmail;
+    public String getNim() {
+        return nim;
     }
 
-    public void setUserEmail(String userEmail) {
-        this.userEmail = userEmail;
-    }
-
-    public String getUserNIM() {
-        return userNIM;
-    }
-
-    public void setUserNIM(String userNIM) {
-        this.userNIM = userNIM;
+    public void setNim(String nim) {
+        this.nim = nim;
     }
 }
