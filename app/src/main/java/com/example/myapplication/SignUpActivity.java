@@ -43,30 +43,41 @@ public class SignUpActivity extends AppCompatActivity {
         String password = pwUser.getText().toString().trim();
         String nim = nimUser.getText().toString().trim();
 
+        // Validasi field kosong
         if (name.isEmpty() || email.isEmpty() || password.isEmpty() || nim.isEmpty()) {
             Toast.makeText(this, "Semua field harus diisi!", Toast.LENGTH_SHORT).show();
             return;
         }
 
+        // Validasi panjang password
+        if (password.length() < 6) {
+            Toast.makeText(this, "Password minimal 6 karakter!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // Proses buat akun
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         FirebaseUser user = mAuth.getCurrentUser();
                         if (user != null) {
+                            // Kirim verifikasi email
                             user.sendEmailVerification().addOnCompleteListener(verifyTask -> {
                                 if (verifyTask.isSuccessful()) {
-                                    Toast.makeText(this, "Verifikasi email telah dikirim!", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(this, "Verifikasi email telah dikirim ke " + user.getEmail(), Toast.LENGTH_LONG).show();
+                                } else {
+                                    Toast.makeText(this, "Gagal mengirim verifikasi email.", Toast.LENGTH_SHORT).show();
                                 }
                             });
 
+                            // Simpan data ke Realtime Database
                             String uid = user.getUid();
                             User userData = new User(name, email, nim);
                             mDatabase.child(uid).setValue(userData)
                                     .addOnCompleteListener(dbTask -> {
                                         if (dbTask.isSuccessful()) {
-                                            Toast.makeText(this, "Akun berhasil dibuat. Silakan verifikasi email.", Toast.LENGTH_LONG).show();
-
-                                            // 👉 Navigasi ke LoginActivity
+                                            Toast.makeText(this, "Akun berhasil dibuat. Silakan cek email untuk verifikasi.", Toast.LENGTH_LONG).show();
+                                            // Redirect ke Login
                                             Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
                                             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                                             startActivity(intent);
@@ -76,7 +87,6 @@ public class SignUpActivity extends AppCompatActivity {
                                         }
                                     });
                         }
-
                     } else {
                         Toast.makeText(this, "Gagal membuat akun: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
                     }
@@ -87,7 +97,7 @@ public class SignUpActivity extends AppCompatActivity {
     public static class User {
         public String name, email, nim;
 
-        public User() {}
+        public User() {} // Diperlukan oleh Firebase
 
         public User(String name, String email, String nim) {
             this.name = name;
